@@ -8,11 +8,11 @@ import rootReducer from './reducers';
 
 const middleware = [thunk];
 
-const store = createStore(rootReducer, {}, applyMiddleware(...middleware))
+const store = createStore(rootReducer, {}, applyMiddleware(...middleware));
 
 render(
   <Provider store={store}>
     <Routes />
   </Provider>,
   document.getElementById('root')
-)
+);

@@ -4,6 +4,6 @@ export const receiveForecast = (forecastData) => ({
   // action object
 });
 
-export const fetchForecast = options => dispatch => {
+export const fetchForecast = (options) => (dispatch) => {
   // return fetch API call
 };
