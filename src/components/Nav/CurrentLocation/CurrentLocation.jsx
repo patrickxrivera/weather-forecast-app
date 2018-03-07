@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import { Wrapper } from './CurrentLocationStyles.jsx';
 
-const CurrentLocation = () => <Wrapper>San Francisco, CA</Wrapper>;
+export default class CurrentLocation extends Component {
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(this.success, this.err, {
+      timeout: 10000
+    });
+  }
 
-export default CurrentLocation;
+  success = ({ coords }) => {
+    console.log(this.props);
+    const { fetchCurrentLocationWeather } = this.props;
+    fetchCurrentLocationWeather(coords);
+  };
+
+  err = (errMsg) => {
+    console.warn(errMsg);
+  };
+
+  render() {
+    return <Wrapper>San Francisco, CA</Wrapper>;
+  }
+}
