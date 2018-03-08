@@ -94,7 +94,7 @@ const getForecast = (day) => {
     [timestamp]: {
       id: timestamp,
       date,
-      temp,
+      roundedTemp,
       description
     }
   };

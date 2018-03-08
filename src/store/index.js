@@ -1,6 +1,6 @@
-import { createStore, compose, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import ReduxPromise from 'redux-promise';
-import { persistStore, persistCombineReducers } from 'redux-persist';
+import { persistCombineReducers } from 'redux-persist'; // import persistStore
 import storage from 'redux-persist/lib/storage';
 
 import root from '../redux';
