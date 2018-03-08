@@ -1,7 +1,13 @@
 import React from 'react';
 
-import { Wrapper } from './TitleStyles.jsx';
+import { Wrapper, StyledLink } from './TitleStyles.jsx';
 
-const Title = () => <Wrapper>Weather.io</Wrapper>;
+const Title = () => (
+  <div>
+    <StyledLink to="/">
+      <Wrapper>Weather.io</Wrapper>
+    </StyledLink>
+  </div>
+);
 
 export default Title;

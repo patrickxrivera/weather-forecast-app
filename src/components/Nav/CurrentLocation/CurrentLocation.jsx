@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import { Wrapper } from './CurrentLocationStyles.jsx';
+import { Wrapper, style } from './CurrentLocationStyles.jsx';
+import { getIconFrom } from './CurrentLocationData.jsx';
 
 export default class CurrentLocation extends Component {
   componentDidMount() {
@@ -10,12 +11,11 @@ export default class CurrentLocation extends Component {
   }
 
   success = ({ coords }) => {
-    const { fetchCurrentLocationWeather } = this.props;
-    fetchCurrentLocationWeather(coords);
+    this.props.fetchWeather(coords);
   };
 
   err = (errMsg) => {
-    console.warn(errMsg);
+    alert(`Seems like we can't get your location. Please try again.`);
   };
 
   render() {
@@ -25,9 +25,13 @@ export default class CurrentLocation extends Component {
 
     const { name, description, temp } = weather;
 
+    const Icon = getIconFrom(description);
+    const StyledIcon = style(Icon);
+
     return (
       <Wrapper>
-        {name}: {temp}&deg;F
+        {name} | <StyledIcon size={25} />
+        {temp}&deg;F
       </Wrapper>
     );
   }

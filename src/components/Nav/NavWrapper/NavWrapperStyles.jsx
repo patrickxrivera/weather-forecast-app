@@ -7,5 +7,5 @@ export const Wrapper = styled.div`
   border-bottom: 1px solid #ecf0f1;
   align-items: flex-end;
   margin-top: 1rem;
-  padding-bottom: 0.2rem;
+  padding: 0 1.5rem 0.5rem;
 `;
