@@ -1,15 +1,15 @@
 import React from 'react';
 
 import Title from '../Title/Title.jsx';
-import CurrentLocation from '../../../containers/CurrentLocation.jsx';
+import CurrentLocation from '../CurrentLocation/CurrentLocation.jsx';
 import NavBtn from '../NavBtn/NavBtn.jsx';
 import { Wrapper } from './NavWrapperStyles.jsx';
 
-const NavWrapper = () => (
+const NavWrapper = (props) => (
   <Wrapper>
     <Title />
-    <CurrentLocation />
-    <NavBtn />
+    <CurrentLocation {...props} />
+    <NavBtn {...props} />
   </Wrapper>
 );
 

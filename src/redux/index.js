@@ -2,8 +2,8 @@ import { combineReducers } from 'redux';
 
 import currentLocation from './modules/currentLocation';
 
-const rootReducer = combineReducers({
+const root = combineReducers({
   currentLocation
 });
 
-export default rootReducer;
+export default root;

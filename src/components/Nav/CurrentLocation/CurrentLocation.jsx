@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
+import isEmpty from 'lodash/isEmpty';
 
 import { Wrapper, style } from './CurrentLocationStyles.jsx';
 import { getIconFrom } from './CurrentLocationData.jsx';
 
 export default class CurrentLocation extends Component {
   componentDidMount() {
-    navigator.geolocation.getCurrentPosition(this.success, this.err, {
-      timeout: 10000
-    });
+    const { currentLocation } = this.props;
+
+    if (isEmpty(currentLocation)) {
+      this.getUserLocation();
+    }
   }
+
+  getUserLocation = () => {
+    const maxTimeout = 10000; // === 10 seconds
+    navigator.geolocation.getCurrentPosition(this.success, this.err, {
+      timeout: maxTimeout
+    });
+  };
 
   success = ({ coords }) => {
     this.props.fetchWeather(coords);
@@ -19,18 +29,18 @@ export default class CurrentLocation extends Component {
   };
 
   render() {
-    const { weather } = this.props.currentLocation;
+    const { currentLocation } = this.props;
 
-    if (!weather) return <Wrapper>Loading</Wrapper>;
+    if (isEmpty(currentLocation)) return <Wrapper>Loading</Wrapper>;
 
-    const { name, description, temp } = weather;
+    const { name, description, temp } = currentLocation.weather;
 
     const Icon = getIconFrom(description);
     const StyledIcon = style(Icon);
 
     return (
       <Wrapper>
-        {name} | <StyledIcon size={25} />
+        {name} <StyledIcon size={25} />
         {temp}&deg;F
       </Wrapper>
     );
