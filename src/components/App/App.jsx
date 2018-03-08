@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 
 import AppStyles, { Wrapper } from './AppStyles.jsx'; // global styles that apply on import
 import NavWrapper from '../Nav/NavWrapper/NavWrapper.jsx';

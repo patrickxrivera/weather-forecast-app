@@ -10,7 +10,6 @@ export default class CurrentLocation extends Component {
   }
 
   success = ({ coords }) => {
-    console.log(this.props);
     const { fetchCurrentLocationWeather } = this.props;
     fetchCurrentLocationWeather(coords);
   };
@@ -20,6 +19,16 @@ export default class CurrentLocation extends Component {
   };
 
   render() {
-    return <Wrapper>San Francisco, CA</Wrapper>;
+    const { weather } = this.props.currentLocation;
+
+    if (!weather) return <Wrapper>Loading</Wrapper>;
+
+    const { name, description, temp } = weather;
+
+    return (
+      <Wrapper>
+        {name}: {temp}&deg;F
+      </Wrapper>
+    );
   }
 }

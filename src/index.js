@@ -2,19 +2,17 @@ import React from 'react';
 import { render } from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import ReduxPromise from 'redux-promise';
+
 import Routes from './routes';
-import thunk from 'redux-thunk';
 import rootReducer from './redux';
-import { compose } from 'redux';
 
-const middleware = [thunk];
+const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
-// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const store = createStore(rootReducer, {}, applyMiddleware(...middleware));
+window.store = createStoreWithMiddleware(rootReducer);
 
 render(
-  <Provider store={store}>
+  <Provider store={createStoreWithMiddleware(rootReducer)}>
     <Routes />
   </Provider>,
   document.getElementById('root')
