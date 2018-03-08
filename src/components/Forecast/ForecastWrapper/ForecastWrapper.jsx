@@ -1,5 +1,16 @@
 import React from 'react';
 
-const ForecastWrapper = () => <div>ForecastWrapper</div>;
+import { Wrapper } from './ForecastWrapperStyles.jsx';
+import ForecastItem from '../ForecastItem/ForecastItem.jsx';
+
+const ForecastWrapper = () => (
+  <Wrapper>
+    <ForecastItem />
+    <ForecastItem />
+    <ForecastItem />
+    <ForecastItem />
+    <ForecastItem />
+  </Wrapper>
+);
 
 export default ForecastWrapper;
