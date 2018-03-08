@@ -3,14 +3,14 @@ import { handleActions } from 'redux-actions';
 
 const API_KEY = '5367d13ed05e34e3342d4fdbc4f5cb7e';
 const ROOT_URL = `http://api.openweathermap.org/data/2.5/weather?units=imperial&appid=${API_KEY}&`;
-const FETCH_CURRENT_LOCATION_WEATHER = 'FETCH_CURRENT_LOCATION_WEATHER';
+const FETCH_WEATHER = 'FETCH_WEATHER';
 
-export const fetchCurrentLocationWeather = ({ latitude, longitude }) => {
+export const fetchWeather = ({ latitude, longitude }) => {
   const url = `${ROOT_URL}lat=${latitude}&lon=${longitude}`;
   const request = axios.get(url);
 
   return {
-    type: FETCH_CURRENT_LOCATION_WEATHER,
+    type: FETCH_WEATHER,
     payload: request
   };
 };
@@ -19,7 +19,7 @@ const initialState = {};
 
 export default handleActions(
   {
-    FETCH_CURRENT_LOCATION_WEATHER: (state, action) => {
+    FETCH_WEATHER: (state, action) => {
       const weather = normalizeWeatherData(action);
       return { weather };
     }
