@@ -1,13 +1,19 @@
 import React from 'react';
 
-import { Wrapper, Title, StyledSun, Temp } from './ForecastItemStyles.jsx';
+import { Wrapper, Title, Temp, style } from './ForecastItemStyles';
+import getIconFrom from '../../../utils/iconData.js';
 
-const ForecastItem = () => (
-  <Wrapper>
-    <Title>Mon</Title>
-    <StyledSun size={60} />
-    <Temp>73&deg;</Temp>
-  </Wrapper>
-);
+const ForecastItem = ({ date, temp, description }) => {
+  const Icon = getIconFrom(description);
+  const StyledIcon = style(Icon);
+
+  return (
+    <Wrapper>
+      <Title>{date}</Title>
+      <StyledIcon size={60} />
+      <Temp>{temp}&deg;</Temp>
+    </Wrapper>
+  );
+};
 
 export default ForecastItem;

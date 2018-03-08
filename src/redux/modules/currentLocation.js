@@ -78,25 +78,23 @@ const normalizeForecastData = ({ payload }) => {
 
 const getDaysFrom = (list) => {
   const daysToForecast = 5;
-  const days = list.slice(0, daysToForecast);
+  const days = list.slice(1, daysToForecast + 1); // first forecast is current day so "+1 offsets to get forecasts starting tomorrow"
   return days;
 };
 
 const getForecast = (day) => {
   const timestamp = day.dt;
-  const temp = day.temp.day;
+  const tempDecimal = day.temp.day;
   const description = day.weather[0].main;
 
-  const roundedTemp = round(temp);
+  const temp = round(tempDecimal);
   const date = getDateFrom(timestamp);
 
   const newForecast = {
-    [timestamp]: {
-      id: timestamp,
-      date,
-      roundedTemp,
-      description
-    }
+    id: timestamp,
+    date,
+    temp,
+    description
   };
 
   return newForecast;

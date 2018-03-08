@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import isEmpty from 'lodash/isEmpty';
 
-import { Wrapper, style } from './CurrentLocationStyles.jsx';
-import { getIconFrom } from './CurrentLocationData.jsx';
+import { Wrapper, style } from './CurrentLocationStyles';
+import getIconFrom from '../../../utils/iconData.js';
 
 export default class CurrentLocation extends Component {
   componentDidMount() {

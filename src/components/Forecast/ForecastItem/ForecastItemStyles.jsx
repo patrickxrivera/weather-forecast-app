@@ -19,7 +19,7 @@ export const Title = styled.span`
   align-items: center;
 `;
 
-export const StyledSun = styled(Sun)`
+export const style = (Icon) => styled(Icon)`
   stroke-width: 1;
   flex: 1;
   align-self: center;

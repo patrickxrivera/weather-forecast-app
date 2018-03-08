@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import isEmpty from 'lodash/isEmpty';
 
 import { Wrapper } from './ForecastWrapperStyles.jsx';
 import ForecastItem from '../ForecastItem/ForecastItem.jsx';
@@ -22,14 +21,15 @@ export default class ForecastWrapper extends Component {
   };
 
   render() {
-    console.log(this.props);
+    if (this.forecastHasntBeenFetched(this.props)) return <div>Loading</div>;
+
+    const { forecast } = this.props.currentLocation;
+
     return (
       <Wrapper>
-        <ForecastItem />
-        <ForecastItem />
-        <ForecastItem />
-        <ForecastItem />
-        <ForecastItem />
+        {forecast.map((day) => {
+          return <ForecastItem key={day.id} {...day} />;
+        })};
       </Wrapper>
     );
   }
