@@ -35,3 +35,5 @@ export default handleActions(
   },
   initialState
 );
+
+export const getDashboard = (state) => state.root.dashboard;

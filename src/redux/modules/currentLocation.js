@@ -108,3 +108,5 @@ const getDateFrom = (timestamp) => {
 };
 
 const round = (num) => Math.round(num);
+
+export const getCurrentLocation = (state) => state.root.currentLocation;
