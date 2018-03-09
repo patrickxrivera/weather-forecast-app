@@ -1,6 +1,7 @@
 import { createAction, handleActions } from 'redux-actions';
 
 import Pin from '../../components/Dashboard/Pin/Pin';
+import Search from '../../components/Dashboard/Search/Search';
 import * as color from 'material-ui/styles/colors';
 
 export const fetchView = createAction('FETCH_VIEW');
