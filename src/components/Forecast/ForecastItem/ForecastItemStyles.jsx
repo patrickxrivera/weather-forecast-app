@@ -2,13 +2,16 @@ import styled from 'styled-components';
 import { Sun } from 'react-feather';
 
 export const Wrapper = styled.div`
+  border: 1px solid #ecf0f1;
+  border-top: 4px solid #0984e3;
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 350px;
-  background-color: #fff;
   width: 180px;
-  border-radius: 3px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 `;
 
 export const Title = styled.span`
@@ -17,6 +20,12 @@ export const Title = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const IconWrapper = styled.div`
+  display: flex;
+  height: 100px;
+  width: 100%;
 `;
 
 export const style = (Icon) => styled(Icon)`

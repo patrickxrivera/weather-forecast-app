@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Wrapper, Title, Temp, style } from './ForecastItemStyles';
+import { Wrapper, Title, Temp, style, IconWrapper } from './ForecastItemStyles';
 import getIconFrom from '../../../utils/iconData.js';
 
 const ForecastItem = ({ date, temp, description }) => {
@@ -10,7 +10,9 @@ const ForecastItem = ({ date, temp, description }) => {
   return (
     <Wrapper>
       <Title>{date}</Title>
-      <StyledIcon size={60} />
+      <IconWrapper>
+        <StyledIcon size={60} />
+      </IconWrapper>
       <Temp>{temp}&deg;</Temp>
     </Wrapper>
   );
