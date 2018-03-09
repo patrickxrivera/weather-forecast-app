@@ -29,11 +29,27 @@ const initialState = {
 export default handleActions(
   {
     FETCH_VIEW: (state, action) => {
-      console.log(action.payload);
-      return state;
+      const newState = getNewStateFrom(state, action);
+      return newState;
     }
   },
   initialState
 );
+
+const getNewStateFrom = (state, action) => {
+  const { id, newView } = action.payload;
+
+  const cardToChange = state[id];
+
+  const updatedCard = {
+    ...cardToChange,
+    View: newView
+  };
+
+  return {
+    ...state,
+    [id]: updatedCard
+  };
+};
 
 export const getDashboard = (state) => state.root.dashboard;
