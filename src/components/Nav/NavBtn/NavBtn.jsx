@@ -3,21 +3,12 @@ import { Link } from 'react-router-dom';
 
 import { Btn } from './NavBtnStyles.jsx';
 
-export default class NavBtn extends Component {
-  // handleClick = () => {
-  //   const { fetchForecast } = this.props;
-  //   const { lat, lon } = this.props.currentLocation.weather;
-  //
-  //   fetchForecast(lat, lon);
-  // };
+const NavBtn = () => (
+  <div>
+    <Link to="/forecast">
+      <Btn>View Forecast</Btn>
+    </Link>
+  </div>
+);
 
-  render() {
-    return (
-      <div>
-        <Link to="/forecast">
-          <Btn>View Forecast</Btn>
-        </Link>
-      </div>
-    );
-  }
-}
+export default NavBtn;

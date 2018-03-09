@@ -1,20 +1,23 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import AppStyles, { Wrapper } from './AppStyles'; // global styles that apply on import
 import Nav from '../../containers/Nav';
-import DashboardWrapper from '../Dashboard/DashboardWrapper/DashboardWrapper';
+import Dashboard from '../../containers/Dashboard';
 import Forecast from '../../containers/Forecast';
 
 const App = () => (
   <Router>
-    <Wrapper>
-      <Nav />
-      <Switch>
-        <Route exact path="/" component={DashboardWrapper} />
-        <Route path="/forecast" component={Forecast} />
-      </Switch>
-    </Wrapper>
+    <MuiThemeProvider>
+      <Wrapper>
+        <Nav />
+        <Switch>
+          <Route exact path="/" component={Dashboard} />
+          <Route path="/forecast" component={Forecast} />
+        </Switch>
+      </Wrapper>
+    </MuiThemeProvider>
   </Router>
 );
 

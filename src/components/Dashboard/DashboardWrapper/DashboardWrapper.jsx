@@ -1,12 +1,23 @@
 import React from 'react';
+import values from 'lodash/values';
 
-import { OuterWrapper } from './DashboardWrapperStyles';
+import { OuterWrapper, CardWrapper } from './DashboardWrapperStyles';
 import Pin from '../Pin/Pin';
+import Search from '../Search/Search';
 
-const DashboardWrapper = () => (
-  <OuterWrapper>
-    <Pin />
-  </OuterWrapper>
-);
+const DashboardWrapper = ({ dashboard }) => {
+  return (
+    <OuterWrapper>
+      {values(dashboard).map((data) => {
+        const { View, id } = data;
+        return (
+          <CardWrapper>
+            <View key={id} {...data} />
+          </CardWrapper>
+        );
+      })}
+    </OuterWrapper>
+  );
+};
 
 export default DashboardWrapper;
