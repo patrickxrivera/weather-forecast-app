@@ -5,12 +5,11 @@ import { func, string, number } from 'prop-types';
 import { inputStyle, hintStyle, style } from './SearchStyles';
 import { Wrapper } from './SearchStyles';
 import TextField from 'material-ui/TextField';
-import Result from '../Result/Result';
 
 class Search extends Component {
   static propTypes = {
     id: number.isRequired,
-    View: func.isRequired,
+    View: string.isRequired,
     primaryColor: string.isRequired,
     secondaryColor: string.isRequired,
     fetchPinWeather: func.isRequired,
@@ -27,6 +26,8 @@ class Search extends Component {
   };
 
   handleSubmit = (payload, e) => {
+    e.preventDefault();
+
     const { searchVal } = this.state;
     const { fetchView, receiveCity } = this.props;
 
@@ -52,7 +53,7 @@ class Search extends Component {
 
   render() {
     const { primaryColor, id } = this.props;
-    const newView = Result;
+    const newView = 'Result';
     const payload = { id, newView };
 
     return (

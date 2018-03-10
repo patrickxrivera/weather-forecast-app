@@ -3,7 +3,6 @@ import isEmpty from 'lodash/isEmpty';
 import { func, string, number } from 'prop-types';
 
 import getIconFrom from '../../../utils/iconData.js';
-import Pin from '../Pin/Pin';
 import * as S from './ResultStyles.jsx'; // S === Styles => didn't want massive import :/
 import ContentClear from 'material-ui/svg-icons/content/clear';
 import ContentForward from 'material-ui/svg-icons/content/forward';
@@ -16,7 +15,7 @@ const style = {
 class Result extends Component {
   static propTypes = {
     id: number.isRequired,
-    View: func.isRequired,
+    View: string.isRequired,
     primaryColor: string.isRequired,
     secondaryColor: string.isRequired,
     fetchPinWeather: func.isRequired,
@@ -39,7 +38,7 @@ class Result extends Component {
       id
     } = this.props;
 
-    const newView = Pin;
+    const newView = 'Pin';
     const payload = { id, newView };
 
     if (isEmpty(weather)) return <S.Wrapper>Loading</S.Wrapper>;

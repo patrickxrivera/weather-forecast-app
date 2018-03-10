@@ -3,18 +3,19 @@ import ReduxPromise from 'redux-promise';
 import { persistCombineReducers } from 'redux-persist'; // import persistStore
 import storage from 'redux-persist/lib/storage';
 
+import { loadState, saveState } from './localStorage.js';
 import root from '../redux';
 
-const config = {
-  key: 'root',
-  storage
-};
+const key = 'state';
+const persistedState = loadState(key);
+const store = createStore(root, persistedState, applyMiddleware(ReduxPromise));
 
-const reducers = persistCombineReducers(config, {
-  root
+store.subscribe(() => {
+  const currentState = store.getState();
+  saveState(currentState, key);
 });
 
-export const store = createStore(reducers, applyMiddleware(ReduxPromise));
+export default store;
 
 // purge store => const persistor = persistStore(store);
 // use a combination of set interval and clear interval to reset the store

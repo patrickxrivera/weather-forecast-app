@@ -3,6 +3,7 @@ import values from 'lodash/values';
 import { func, shape, string, number } from 'prop-types';
 
 import { OuterWrapper, CardWrapper } from './DashboardWrapperStyles';
+import { componentMap } from './DashboardWrapperData';
 
 const DashboardWrapper = (props) => {
   const { dashboard, ...rest } = props;
@@ -11,11 +12,12 @@ const DashboardWrapper = (props) => {
     <OuterWrapper>
       {values(dashboard).map((data) => {
         const { View, id } = data;
+        const Component = componentMap[View];
         const nextProps = { ...data, ...rest };
 
         return (
           <CardWrapper>
-            <View key={id} {...nextProps} />
+            <Component key={id} {...nextProps} />
           </CardWrapper>
         );
       })}
@@ -29,7 +31,7 @@ DashboardWrapper.propTypes = {
   receiveCity: func.isRequired,
   dashboard: shape({
     id: number.isRequired,
-    View: func.isRequired,
+    View: string.isRequired,
     primaryColor: string.isRequired,
     secondaryColor: string.isRequired
   })

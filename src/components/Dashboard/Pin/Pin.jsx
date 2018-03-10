@@ -4,10 +4,9 @@ import { func, string, number } from 'prop-types';
 import { OuterWrapper, ContentWrapper } from './PinStyles';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
-import Search from '../Search/Search';
 
 const Pin = ({ id, primaryColor, secondaryColor, fetchView }) => {
-  const newView = Search;
+  const newView = 'Search';
   const payload = { id, newView };
 
   return (

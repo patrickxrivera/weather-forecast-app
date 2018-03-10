@@ -100,4 +100,4 @@ const getForecast = (day) => {
   return newForecast;
 };
 
-export const getCurrentLocation = (state) => state.root.currentLocation;
+export const getCurrentLocation = (state) => state.currentLocation;

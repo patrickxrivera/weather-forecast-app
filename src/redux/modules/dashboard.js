@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { createAction, handleActions } from 'redux-actions';
 
-import Pin from '../../components/Dashboard/Pin/Pin';
 import * as color from 'material-ui/styles/colors';
 import { API_KEY, ROOT_URL, round } from '../../utils/api.js';
 
@@ -23,19 +22,19 @@ export const fetchPinWeather = async (city, id) => {
 const initialState = {
   1: {
     id: 1,
-    View: Pin,
+    View: 'Pin',
     primaryColor: color.deepPurple400,
     secondaryColor: color.deepPurple50
   },
   2: {
     id: 2,
-    View: Pin,
+    View: 'Pin',
     primaryColor: color.blue700,
     secondaryColor: color.blue50
   },
   3: {
     id: 3,
-    View: Pin,
+    View: 'Pin',
     primaryColor: color.cyan400,
     secondaryColor: color.cyan50
   }
@@ -131,4 +130,4 @@ const updateCardWithWeather = (data) => {
   return updatedCard;
 };
 
-export const getDashboard = (state) => state.root.dashboard;
+export const getDashboard = (state) => state.dashboard;
