@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {
   fetchView,
   receiveCity,
-  fetchPinWeather,
+  fetchDashboardWeather,
   getDashboard
 } from '../redux/modules/dashboard';
 import DashboardWrapper from '../components/Dashboard/DashboardWrapper/DashboardWrapper.jsx';
@@ -15,5 +15,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   fetchView,
   receiveCity,
-  fetchPinWeather
+  fetchDashboardWeather
 })(DashboardWrapper);

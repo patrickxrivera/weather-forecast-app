@@ -2,19 +2,31 @@ import axios from 'axios';
 import { createAction, handleActions } from 'redux-actions';
 
 import * as color from 'material-ui/styles/colors';
-import { API_KEY, ROOT_URL, round } from '../../utils/api.js';
+import { API_KEY, ROOT_URL, round, getDateFrom } from '../../utils/api.js';
+import * as schema from './dashboardSchema.js';
 
-const FETCH_PIN_WEATHER = 'FETCH_PIN_WEATHER';
+const FETCH_DASHBOARD_WEATHER = 'FETCH_DASHBOARD_WEATHER';
+const FETCH_DASHBOARD_FORECAST = 'FETCH_DASHBOARD_FORECAST';
 
 export const fetchView = createAction('FETCH_VIEW');
 export const receiveCity = createAction('RECEIVE_CITY');
 
-export const fetchPinWeather = async (city, id) => {
+export const fetchDashboardWeather = async (city, id) => {
   const url = `${ROOT_URL}forecast/daily?units=imperial&appid=${API_KEY}&q=${city}`;
   const request = await axios.get(url); // wait for promise so we can pass id as well
 
   return {
-    type: FETCH_PIN_WEATHER,
+    type: FETCH_DASHBOARD_WEATHER,
+    payload: { ...request, id }
+  };
+};
+
+export const fetchDashboardForecast = async (city, id) => {
+  const url = `${ROOT_URL}forecast/daily?units=imperial&appid=${API_KEY}&q=${city}`;
+  const request = await axios.get(url);
+
+  return {
+    type: FETCH_DASHBOARD_FORECAST,
     payload: { ...request, id }
   };
 };
@@ -43,91 +55,26 @@ const initialState = {
 export default handleActions(
   {
     FETCH_VIEW: (state, action) => {
-      const newState = normalizeViewData(state, action);
+      const newState = schema.normalizeViewData(state, action);
       return newState;
     },
 
     RECEIVE_CITY: (state, action) => {
-      const newState = normalizeCityData(state, action);
+      const newState = schema.normalizeCityData(state, action);
       return newState;
     },
 
-    FETCH_PIN_WEATHER: (state, action) => {
-      const newState = normalizeWeatherData(state, action);
+    FETCH_DASHBOARD_WEATHER: (state, action) => {
+      const newState = schema.normalizeWeatherData(state, action);
+      return newState;
+    },
+
+    FETCH_DASHBOARD_FORECAST: (state, action) => {
+      const newState = schema.normalizeForecastData(state, action);
       return newState;
     }
   },
   initialState
 );
-
-const normalizeViewData = (state, action) => {
-  const { id, newView } = action.payload;
-  const cardToChange = state[id];
-
-  const updatedCard = {
-    ...cardToChange,
-    View: newView
-  };
-
-  return {
-    ...state,
-    [id]: updatedCard
-  };
-};
-
-const normalizeCityData = (state, action) => {
-  const { id, searchVal } = action.payload;
-  const cardToChange = state[id];
-
-  const updatedCard = {
-    ...cardToChange,
-    city: searchVal
-  };
-
-  return {
-    ...state,
-    [id]: updatedCard
-  };
-};
-
-const normalizeWeatherData = (state, { payload }) => {
-  const { id } = payload;
-  const { list } = payload.data;
-  const today = getTodayFrom(list);
-  const data = { today, id, state };
-  const updatedCard = updateCardWithWeather(data);
-
-  return {
-    ...state,
-    [id]: updatedCard
-  };
-};
-
-const getTodayFrom = (list) => {
-  let today = list.slice(0, 1); // array of forecasts for next 7 days, today is idx 0
-  return today[0]; // extract object from array
-};
-
-const updateCardWithWeather = (data) => {
-  const { today, id, state } = data;
-  const cardToChange = state[id];
-
-  const description = today.weather[0].main;
-  const { eve, max, min } = today.temp;
-
-  const weather = {
-    description,
-    average: round(eve),
-    high: round(max),
-    low: round(min)
-  };
-
-  const updatedCard = {
-    ...cardToChange,
-    weather
-  };
-
-  return updatedCard;
-};
 
 export const getDashboard = (state) => state.dashboard;

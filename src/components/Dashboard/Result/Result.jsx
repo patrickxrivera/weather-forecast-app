@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import isEmpty from 'lodash/isEmpty';
 import { func, string, number } from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import getIconFrom from '../../../utils/iconData.js';
 import * as S from './ResultStyles.jsx'; // S === Styles => didn't want massive import :/
@@ -68,9 +69,15 @@ class Result extends Component {
           >
             <ContentClear style={style} color="black" />
           </FloatingActionButton>
-          <FloatingActionButton backgroundColor={secondaryColor} mini={true}>
-            <ContentForward style={style} color="black" />
-          </FloatingActionButton>
+          <Link
+            to={{
+              pathname: `forecast/dashboard/${id}`
+            }}
+          >
+            <FloatingActionButton backgroundColor={secondaryColor} mini={true}>
+              <ContentForward style={style} color="black" />
+            </FloatingActionButton>
+          </Link>
         </S.BtnWrapper>
       </S.Wrapper>
     );

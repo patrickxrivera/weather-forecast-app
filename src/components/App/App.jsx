@@ -16,7 +16,7 @@ const App = () => (
         <Switch>
           <Route exact path="/" component={Dashboard} />
           <Route path="/forecast/current" component={ForecastCurrent} />
-          <Route path="/forecast/dashboard" component={ForecastPinned} />
+          <Route path="/forecast/dashboard/:id" component={ForecastPinned} />
         </Switch>
       </Wrapper>
     </MuiThemeProvider>

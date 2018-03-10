@@ -10,10 +10,15 @@ const ForecastEnhancer = (ComponentToWrap) => {
     }
 
     prepareFetchForecast = () => {
-      const { fetchForecast } = this.props;
       const { name } = this.props;
-      fetchForecast(name);
+      const { fetchForecast } = this.props;
+
+      const id = this.getId(this.props);
+
+      fetchForecast(name, id);
     };
+
+    getId = (props) => props.match.params.id;
 
     forecastHasntBeenFetched = (forecast) => {
       return forecast === undefined;
@@ -28,7 +33,7 @@ const ForecastEnhancer = (ComponentToWrap) => {
     }
   }
 
-  return connect(null, { fetchForecast })(WrappedComponent);
+  return connect()(WrappedComponent);
 };
 
 export default ForecastEnhancer;
