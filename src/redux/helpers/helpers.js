@@ -11,3 +11,27 @@ export const getDateFrom = (timestamp) => {
     .format('ddd')
     .toUpperCase();
 };
+
+export const getDaysFrom = (list) => {
+  const daysToForecast = 5;
+  const days = list.slice(1, daysToForecast + 1); // first forecast is current day so "+1 offsets to get forecasts starting tomorrow"
+  return days;
+};
+
+export const getForecast = (day) => {
+  const timestamp = day.dt;
+  const tempDecimal = day.temp.day;
+  const description = day.weather[0].main;
+
+  const temp = round(tempDecimal);
+  const date = getDateFrom(timestamp);
+
+  const newForecast = {
+    id: timestamp,
+    date,
+    temp,
+    description
+  };
+
+  return newForecast;
+};

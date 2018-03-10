@@ -1,3 +1,4 @@
+import { getDaysFrom, getForecast } from '../helpers/helpers.js';
 import { round, getDateFrom } from '../helpers/helpers.js';
 
 export const normalizeViewData = (state, action) => {
@@ -87,28 +88,4 @@ export const normalizeForecastData = (state, { payload }) => {
     ...state,
     [id]: updatedCard
   };
-};
-
-const getDaysFrom = (list) => {
-  const daysToForecast = 5;
-  const days = list.slice(1, daysToForecast + 1); // first forecast is current day so "+1 offsets to get forecasts starting tomorrow"
-  return days;
-};
-
-const getForecast = (day) => {
-  const timestamp = day.dt;
-  const tempDecimal = day.temp.day;
-  const description = day.weather[0].main;
-
-  const temp = round(tempDecimal);
-  const date = getDateFrom(timestamp);
-
-  const newForecast = {
-    id: timestamp,
-    date,
-    temp,
-    description
-  };
-
-  return newForecast;
 };
