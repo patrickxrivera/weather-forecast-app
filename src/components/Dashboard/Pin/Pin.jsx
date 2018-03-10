@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { func, string, number } from 'prop-types';
 
 import { OuterWrapper, ContentWrapper, Btn } from './PinStyles';
 import ContentAdd from 'material-ui/svg-icons/content/add';
@@ -23,6 +24,13 @@ const Pin = ({ id, primaryColor, secondaryColor, fetchView }) => {
       </ContentWrapper>
     </OuterWrapper>
   );
+};
+
+Pin.propTypes = {
+  id: number.isRequired,
+  primaryColor: string.isRequired,
+  secondaryColor: string.isRequired,
+  fetchView: func.isRequired
 };
 
 export default Pin;

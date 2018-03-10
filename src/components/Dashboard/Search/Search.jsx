@@ -1,11 +1,23 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { func, string, number } from 'prop-types';
 
+import { inputStyle, hintStyle, style } from './SearchStyles';
 import { Wrapper } from './SearchStyles';
 import TextField from 'material-ui/TextField';
 import Result from '../Result/Result';
 
 class Search extends Component {
+  static propTypes = {
+    id: number.isRequired,
+    View: func.isRequired,
+    primaryColor: string.isRequired,
+    secondaryColor: string.isRequired,
+    fetchPinWeather: func.isRequired,
+    fetchView: func.isRequired,
+    receiveCity: func.isRequired
+  };
+
   state = {
     searchVal: ''
   };
@@ -18,7 +30,7 @@ class Search extends Component {
     const { searchVal } = this.state;
     const { fetchView, receiveCity } = this.props;
 
-    receiveCity({ ...payload, searchVal }); // add searchVal to payload
+    receiveCity({ ...payload, searchVal }); // add searchVal to reducer payload
     fetchView(payload);
   };
 
@@ -26,19 +38,20 @@ class Search extends Component {
     return (
       <TextField
         // {...input}
+        // errorText={meta.error}
         autoFocus={true}
         hintText="Enter a city"
         onChange={this.handleChange}
-        // errorText={meta.error}
-        inputStyle={{ textAlign: 'center', fontSize: '20px' }}
-        hintStyle={{ width: '300px', textAlign: 'center', fontSize: '20px' }}
-        style={{ width: '300px', fontWeight: 'normal', fontSize: '20px' }}
+        inputStyle={inputStyle}
+        hintStyle={hintStyle}
+        style={style}
         underlineFocusStyle={{ borderColor: color }}
       />
     );
   };
 
   render() {
+    console.log(this.props);
     const { primaryColor, id } = this.props;
     const newView = Result;
     const payload = { id, newView };

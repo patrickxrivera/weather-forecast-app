@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import isEmpty from 'lodash/isEmpty';
+import { func, string, number } from 'prop-types';
 
 import Pin from '../Pin/Pin';
 import * as S from './ResultStyles.jsx'; // S === Styles => didn't want massive import :/
@@ -13,7 +14,18 @@ const style = {
 };
 
 class Result extends Component {
+  static propTypes = {
+    id: number.isRequired,
+    View: func.isRequired,
+    primaryColor: string.isRequired,
+    secondaryColor: string.isRequired,
+    fetchPinWeather: func.isRequired,
+    fetchView: func.isRequired,
+    receiveCity: func.isRequired
+  };
+
   componentDidMount() {
+    console.log(this.props);
     const { city, fetchPinWeather, id } = this.props;
     fetchPinWeather(city, id);
   }
