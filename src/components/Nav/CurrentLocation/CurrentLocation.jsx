@@ -1,10 +1,23 @@
 import React, { Component } from 'react';
 import isEmpty from 'lodash/isEmpty';
+import { func, shape, string, number } from 'prop-types';
 
 import { Wrapper, style } from './CurrentLocationStyles';
 import getIconFrom from '../../../utils/iconData.js';
 
 export default class CurrentLocation extends Component {
+  static propTypes = {
+    fetchWeather: func.isRequired,
+    fetchForecast: func.isRequired,
+    currentLocation: shape({
+      weather: shape({
+        name: string,
+        description: string,
+        temp: number
+      })
+    })
+  };
+
   componentDidMount() {
     const { currentLocation } = this.props;
 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
 import isEmpty from 'lodash/isEmpty';
 import { func, string, number } from 'prop-types';
 
+import getIconFrom from '../../../utils/iconData.js';
 import Pin from '../Pin/Pin';
 import * as S from './ResultStyles.jsx'; // S === Styles => didn't want massive import :/
 import ContentClear from 'material-ui/svg-icons/content/clear';
@@ -25,7 +25,6 @@ class Result extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props);
     const { city, fetchPinWeather, id } = this.props;
     fetchPinWeather(city, id);
   }
@@ -46,6 +45,8 @@ class Result extends Component {
     if (isEmpty(weather)) return <S.Wrapper>Loading</S.Wrapper>;
 
     const { description, average, high, low } = this.props.weather;
+    const Icon = getIconFrom(description);
+    const StyledIcon = S.style(Icon);
 
     return (
       <S.Wrapper>
@@ -53,7 +54,7 @@ class Result extends Component {
           <S.Header primaryColor={primaryColor}>{city}</S.Header>
         </S.HeaderWrapper>
         <S.Middle>
-          <S.StyledSun size={80} />
+          <StyledIcon size={80} />
           <S.Gutter />
           <S.CurrentTemp>{average}&deg;</S.CurrentTemp>
         </S.Middle>

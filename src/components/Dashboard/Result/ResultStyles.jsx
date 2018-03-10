@@ -30,7 +30,7 @@ export const Middle = styled.div`
   flex: 1;
 `;
 
-export const StyledSun = styled(Sun)`
+export const style = (Icon) => styled(Icon)`
   stroke-width: 1;
   align-self: center;
 `;

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { func, string, number } from 'prop-types';
 
-import { OuterWrapper, ContentWrapper, Btn } from './PinStyles';
+import { OuterWrapper, ContentWrapper } from './PinStyles';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import Search from '../Search/Search';

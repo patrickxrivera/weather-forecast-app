@@ -113,7 +113,6 @@ const updateCardWithWeather = (data) => {
   const { today, id, state } = data;
   const cardToChange = state[id];
 
-  const { dt } = today.dt;
   const description = today.weather[0].main;
   const { day, min, max } = today.temp;
 
