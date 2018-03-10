@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Sun } from 'react-feather';
 
 export const Wrapper = styled.div`
   border: 1px solid #ecf0f1;

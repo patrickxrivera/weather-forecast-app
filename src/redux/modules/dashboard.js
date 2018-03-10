@@ -1,7 +1,7 @@
 import { createAction, handleActions } from 'redux-actions';
 
 import Pin from '../../components/Dashboard/Pin/Pin';
-import Search from '../../components/Dashboard/Search/Search';
+import Result from '../../components/Dashboard/Result/Result';
 import * as color from 'material-ui/styles/colors';
 
 export const fetchView = createAction('FETCH_VIEW');
@@ -9,7 +9,7 @@ export const fetchView = createAction('FETCH_VIEW');
 const initialState = {
   1: {
     id: 1,
-    View: Pin,
+    View: Result,
     primaryColor: color.deepPurple400,
     secondaryColor: color.deepPurple50
   },
@@ -21,7 +21,7 @@ const initialState = {
   },
   3: {
     id: 3,
-    View: Pin,
+    View: Result,
     primaryColor: color.cyan400,
     secondaryColor: color.cyan50
   }
