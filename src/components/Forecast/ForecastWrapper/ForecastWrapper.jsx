@@ -4,20 +4,18 @@ import { Wrapper } from './ForecastWrapperStyles.jsx';
 import ForecastItem from '../ForecastItem/ForecastItem.jsx';
 
 export default class ForecastWrapper extends Component {
-  componentWillReceiveProps(...props) {
-    if (this.forecastHasntBeenFetched(...props)) {
-      this.prepareFetchForecast(...props); // TODO better name
-    }
+  componentDidMount() {
+    this.prepareFetchForecast(); // TODO better name
   }
 
-  forecastHasntBeenFetched = (nextProps) => {
-    return nextProps.currentLocation.forecast === undefined;
+  prepareFetchForecast = () => {
+    const { fetchForecast } = this.props;
+    const { lat, lon } = this.props.currentLocation.weather;
+    fetchForecast(lat, lon);
   };
 
-  prepareFetchForecast = (nextProps) => {
-    const { fetchForecast } = nextProps;
-    const { lat, lon } = nextProps.currentLocation.weather;
-    fetchForecast(lat, lon);
+  forecastHasntBeenFetched = (props) => {
+    return props.currentLocation.forecast === undefined;
   };
 
   render() {

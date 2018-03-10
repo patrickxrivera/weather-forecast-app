@@ -51,7 +51,6 @@ class Search extends Component {
   };
 
   render() {
-    console.log(this.props);
     const { primaryColor, id } = this.props;
     const newView = Result;
     const payload = { id, newView };

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Sun } from 'react-feather';
 
 export const Wrapper = styled.div`
   display: flex;

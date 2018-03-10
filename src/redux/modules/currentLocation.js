@@ -8,7 +8,7 @@ const FETCH_FORECAST = 'FETCH_FORECAST';
 
 export const fetchWeather = ({ latitude, longitude }) => {
   const url = `${ROOT_URL}weather?units=imperial&appid=${API_KEY}&lat=${latitude}&lon=${longitude}`;
-  console.log(url);
+
   const request = axios.get(url);
 
   return {
