@@ -26,8 +26,6 @@ class Search extends Component {
   };
 
   handleSubmit = (payload, e) => {
-    e.preventDefault();
-
     const { searchVal } = this.state;
     const { fetchView, receiveCity } = this.props;
 

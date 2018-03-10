@@ -18,3 +18,16 @@ export const saveState = (state, key) => {
     // Ignore write errors.
   }
 };
+
+/* Reset localStorage every 3 minutes so weather is updated */
+
+let id;
+
+const test = () => {
+  const refreshTime = 1000 * 180;
+  id = setInterval(otherTest, refreshTime);
+};
+
+const otherTest = () => localStorage.clear();
+
+test();
