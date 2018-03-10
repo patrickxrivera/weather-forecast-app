@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import Loading from '../../components/Dashboard/Loading/Loading';
+
 const ForecastEnhancer = (ComponentToWrap) => {
   class WrappedComponent extends Component {
     componentDidMount() {
@@ -25,7 +27,8 @@ const ForecastEnhancer = (ComponentToWrap) => {
     render() {
       const { forecast } = this.props;
 
-      if (this.forecastHasntBeenFetched(forecast)) return <div>Loading</div>;
+      if (this.forecastHasntBeenFetched(forecast))
+        return <Loading {...this.props} />;
 
       return <ComponentToWrap {...this.props} />;
     }

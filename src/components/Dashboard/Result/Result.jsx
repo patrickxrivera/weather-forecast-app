@@ -8,6 +8,7 @@ import * as S from './ResultStyles.jsx'; // S === Styles => didn't want massive 
 import ContentClear from 'material-ui/svg-icons/content/clear';
 import ContentForward from 'material-ui/svg-icons/content/forward';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
+import Loading from '../Loading/Loading';
 
 const style = {
   fill: 'hsla(222, 7%, 35%, .9)'
@@ -42,7 +43,7 @@ class Result extends Component {
     const newView = 'Pin';
     const payload = { id, newView };
 
-    if (isEmpty(weather)) return <S.Wrapper>Loading</S.Wrapper>;
+    if (isEmpty(weather)) return <Loading primaryColor={primaryColor} />;
 
     const { description, average, high, low } = this.props.weather;
     const Icon = getIconFrom(description);
