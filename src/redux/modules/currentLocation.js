@@ -17,8 +17,8 @@ export const fetchWeather = ({ latitude, longitude }) => {
   };
 };
 
-export const fetchForecast = (lat, lon) => {
-  const url = `${ROOT_URL}forecast/daily?units=imperial&appid=${API_KEY}&lat=${lat}&lon=${lon}`;
+export const fetchForecast = (city) => {
+  const url = `${ROOT_URL}forecast/daily?units=imperial&appid=${API_KEY}&q=${city}`;
   const request = axios.get(url);
 
   return {

@@ -5,7 +5,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppStyles, { Wrapper } from './AppStyles'; // global styles that apply on import
 import Nav from '../../containers/Nav';
 import Dashboard from '../../containers/Dashboard';
-import Forecast from '../../containers/Forecast';
+import ForecastCurrent from '../../containers/Forecast/ForecastCurrent';
+import ForecastPinned from '../../containers/Forecast/ForecastPinned';
 
 const App = () => (
   <Router>
@@ -14,7 +15,8 @@ const App = () => (
         <Nav />
         <Switch>
           <Route exact path="/" component={Dashboard} />
-          <Route path="/forecast" component={Forecast} />
+          <Route path="/forecast/current" component={ForecastCurrent} />
+          <Route path="/forecast/dashboard" component={ForecastPinned} />
         </Switch>
       </Wrapper>
     </MuiThemeProvider>
