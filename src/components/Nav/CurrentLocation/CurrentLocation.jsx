@@ -21,7 +21,7 @@ export default class CurrentLocation extends Component {
   componentDidMount() {
     const { currentLocation } = this.props;
 
-    if (isEmpty(currentLocation)) {
+    if (this.weatherHasntBeenFetched(currentLocation)) {
       this.getUserLocation();
     }
   }
@@ -41,10 +41,14 @@ export default class CurrentLocation extends Component {
     alert(`Seems like we can't get your location. Please try again.`);
   };
 
+  weatherHasntBeenFetched = (currentLocation) =>
+    currentLocation.weather === undefined;
+
   render() {
     const { currentLocation } = this.props;
 
-    if (isEmpty(currentLocation)) return <Wrapper>Loading</Wrapper>;
+    if (this.weatherHasntBeenFetched(currentLocation))
+      return <Wrapper>Loading</Wrapper>;
 
     const { name, description, temp } = currentLocation.weather;
 

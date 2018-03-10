@@ -8,7 +8,9 @@ const mapStateToProps = (state, ownProps) => {
   const { id } = ownProps.match.params;
   return {
     forecast: state.dashboard[id].forecast,
-    name: getName(state, id)
+    name: getName(state, id),
+    primaryColor: state.dashboard[id].primaryColor,
+    secondaryColor: state.dashboard[id].secondaryColor
   };
 };
 

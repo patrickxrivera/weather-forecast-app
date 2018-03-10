@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   border: 1px solid #ecf0f1;
-  border-top: 4px solid #0984e3;
+  border-top: ${(props) => `4px solid ${props.primaryColor}`};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,6 +25,7 @@ export const IconWrapper = styled.div`
   display: flex;
   height: 100px;
   width: 100%;
+  background-color: ${(props) => props.secondaryColor};
 `;
 
 export const style = (Icon) => styled(Icon)`

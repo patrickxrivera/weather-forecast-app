@@ -7,7 +7,9 @@ import { fetchForecast } from '../../redux/currentLocation/currentLocation.js';
 const mapStateToProps = (state, ownProps) => {
   return {
     forecast: state.currentLocation.forecast,
-    name: getName(state)
+    name: getName(state),
+    primaryColor: state.currentLocation.primaryColor,
+    secondaryColor: state.currentLocation.secondaryColor
   };
 };
 

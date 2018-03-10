@@ -28,7 +28,10 @@ export const fetchForecast = (city) => {
   };
 };
 
-const initialState = {};
+const initialState = {
+  primaryColor: '#FFB300',
+  secondaryColor: '#FFF8E1'
+};
 
 export default handleActions(
   {

@@ -27,7 +27,7 @@ const ForecastEnhancer = (ComponentToWrap) => {
 
       if (this.forecastHasntBeenFetched(forecast)) return <div>Loading</div>;
 
-      return <ComponentToWrap forecast={forecast} />;
+      return <ComponentToWrap {...this.props} />;
     }
   }
 
