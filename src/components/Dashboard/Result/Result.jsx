@@ -11,17 +11,16 @@ import {
   CurrentTemp,
   Bottom
 } from './ResultStyles.jsx';
-import './ResultStyles.css';
 
 const style = {
   marginBottom: 8,
   border: 'none'
 };
 
-const Result = ({ primaryColor, secondaryColor }) => (
+const Result = ({ primaryColor, secondaryColor, city }) => (
   <Wrapper>
     <HeaderWrapper>
-      <Header primaryColor={primaryColor}>Jacksonville</Header>
+      <Header primaryColor={primaryColor}>{city}</Header>
     </HeaderWrapper>
     <Middle>
       <StyledSun size={80} />
@@ -31,10 +30,8 @@ const Result = ({ primaryColor, secondaryColor }) => (
     <Bottom>High: 80&deg; | Low: 62&deg;</Bottom>
     <RaisedButton
       label="View Forecast"
-      hoverColor={'red'}
       backgroundColor={secondaryColor}
       style={style}
-      className="btn"
     />
   </Wrapper>
 );

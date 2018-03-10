@@ -5,6 +5,7 @@ import Result from '../../components/Dashboard/Result/Result';
 import * as color from 'material-ui/styles/colors';
 
 export const fetchView = createAction('FETCH_VIEW');
+export const receiveSearch = createAction('RECEIVE_SEARCH');
 
 const initialState = {
   1: {
@@ -30,21 +31,40 @@ const initialState = {
 export default handleActions(
   {
     FETCH_VIEW: (state, action) => {
-      const newState = getNewStateFrom(state, action);
+      const newState = getViewFrom(state, action);
+      return newState;
+    },
+
+    RECEIVE_SEARCH: (state, action) => {
+      const newState = addSearchTo(state, action);
       return newState;
     }
   },
   initialState
 );
 
-const getNewStateFrom = (state, action) => {
+const getViewFrom = (state, action) => {
   const { id, newView } = action.payload;
-
   const cardToChange = state[id];
 
   const updatedCard = {
     ...cardToChange,
     View: newView
+  };
+
+  return {
+    ...state,
+    [id]: updatedCard
+  };
+};
+
+const addSearchTo = (state, action) => {
+  const { id, searchVal } = action.payload;
+  const cardToChange = state[id];
+
+  const updatedCard = {
+    ...cardToChange,
+    city: searchVal
   };
 
   return {

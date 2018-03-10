@@ -6,12 +6,14 @@ import Pin from '../Pin/Pin';
 import Search from '../Search/Search';
 
 const DashboardWrapper = (props) => {
-  const { dashboard, fetchView } = props;
+  const { dashboard, fetchView, receiveSearch } = props;
+  const reducers = { fetchView, receiveSearch };
+
   return (
     <OuterWrapper>
       {values(dashboard).map((data) => {
         const { View, id } = data;
-        const nextProps = { ...data, fetchView };
+        const nextProps = { ...data, ...reducers };
 
         return (
           <CardWrapper>
