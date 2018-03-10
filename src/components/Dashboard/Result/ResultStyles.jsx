@@ -51,3 +51,11 @@ export const Bottom = styled.span`
   align-items: center;
   font-size: 1.25rem;
 `;
+
+export const BtnWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin-bottom: 1rem;
+  align-items: center;
+`;

@@ -18,7 +18,7 @@ const Pin = ({ id, primaryColor, secondaryColor, fetchView }) => {
           backgroundColor={primaryColor}
           mini={true}
         >
-          <ContentAdd />
+          <ContentAdd fill="#52565F" />
         </FloatingActionButton>
       </ContentWrapper>
     </OuterWrapper>

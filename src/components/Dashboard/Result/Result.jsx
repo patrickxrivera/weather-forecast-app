@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import isEmpty from 'lodash/isEmpty';
 
+import Pin from '../Pin/Pin';
 import * as S from './ResultStyles.jsx'; // S === Styles => didn't want massive import :/
+import ContentClear from 'material-ui/svg-icons/content/clear';
+import ContentForward from 'material-ui/svg-icons/content/forward';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 const style = {
-  marginBottom: 8,
-  border: 'none'
+  fill: 'hsla(222, 7%, 35%, .9)'
 };
 
 class Result extends Component {
@@ -16,7 +19,17 @@ class Result extends Component {
   }
 
   render() {
-    const { primaryColor, secondaryColor, city, weather } = this.props;
+    const {
+      primaryColor,
+      secondaryColor,
+      city,
+      weather,
+      fetchView,
+      id
+    } = this.props;
+
+    const newView = Pin;
+    const payload = { id, newView };
 
     if (isEmpty(weather)) return <S.Wrapper>Loading</S.Wrapper>;
 
@@ -35,11 +48,18 @@ class Result extends Component {
         <S.Bottom>
           High: {high}&deg; | Low: {low}&deg;
         </S.Bottom>
-        <RaisedButton
-          label="View Forecast"
-          backgroundColor={secondaryColor}
-          style={style}
-        />
+        <S.BtnWrapper>
+          <FloatingActionButton
+            onClick={() => fetchView(payload)}
+            backgroundColor={secondaryColor}
+            mini={true}
+          >
+            <ContentClear style={style} color="black" />
+          </FloatingActionButton>
+          <FloatingActionButton backgroundColor={secondaryColor} mini={true}>
+            <ContentForward style={style} color="black" />
+          </FloatingActionButton>
+        </S.BtnWrapper>
       </S.Wrapper>
     );
   }
