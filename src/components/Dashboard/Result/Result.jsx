@@ -19,14 +19,14 @@ class Result extends Component {
     View: string.isRequired,
     primaryColor: string.isRequired,
     secondaryColor: string.isRequired,
-    fetchPinWeather: func.isRequired,
+    fetchDashboardWeather: func.isRequired,
     fetchView: func.isRequired,
     receiveCity: func.isRequired
   };
 
   componentDidMount() {
-    const { city, fetchPinWeather, id } = this.props;
-    fetchPinWeather(city, id);
+    const { city, fetchDashboardWeather, id } = this.props;
+    fetchDashboardWeather(city, id);
   }
 
   render() {

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAction, handleActions } from 'redux-actions';
 
 import * as color from 'material-ui/styles/colors';
-import { API_KEY, ROOT_URL, round, getDateFrom } from '../../utils/api.js';
+import { API_KEY, ROOT_URL, round, getDateFrom } from '../helpers/helpers.js';
 import * as schema from './dashboardSchema.js';
 
 const FETCH_DASHBOARD_WEATHER = 'FETCH_DASHBOARD_WEATHER';
@@ -21,7 +21,7 @@ export const fetchDashboardWeather = async (city, id) => {
   };
 };
 
-export const fetchDashboardForecast = async (city, id) => {
+export const fetchForecast = async (city, id) => {
   const url = `${ROOT_URL}forecast/daily?units=imperial&appid=${API_KEY}&q=${city}`;
   const request = await axios.get(url);
 

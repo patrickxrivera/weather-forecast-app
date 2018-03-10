@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import currentLocation from './modules/currentLocation';
-import dashboard from './modules/dashboard';
+import currentLocation from './currentLocation/currentLocation.js';
+import dashboard from './dashboard/dashboard.js';
 
 const root = combineReducers({
   currentLocation,

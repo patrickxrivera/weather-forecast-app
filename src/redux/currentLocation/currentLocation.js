@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { handleActions } from 'redux-actions';
 
-import { API_KEY, ROOT_URL, round, getDateFrom } from '../../utils/api.js';
+import { API_KEY, ROOT_URL, round, getDateFrom } from '../helpers/helpers.js';
 
 const FETCH_WEATHER = 'FETCH_WEATHER';
 const FETCH_FORECAST = 'FETCH_FORECAST';

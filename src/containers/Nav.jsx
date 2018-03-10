@@ -4,7 +4,7 @@ import {
   fetchWeather,
   fetchForecast,
   getCurrentLocation
-} from '../redux/modules/currentLocation';
+} from '../redux/currentLocation/currentLocation.js';
 import NavWrapper from '../components/Nav/NavWrapper/NavWrapper.jsx';
 
 const mapStateToProps = (state) => ({

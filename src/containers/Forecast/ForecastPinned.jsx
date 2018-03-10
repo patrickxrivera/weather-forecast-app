@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import ForecastEnhancer from './ForecastEnhancer';
 import ForecastWrapper from '../../components/Forecast/ForecastWrapper/ForecastWrapper.jsx';
-import { fetchForecast } from '../../redux/modules/dashboard';
+import { fetchForecast } from '../../redux/dashboard/dashboard.js';
 
 const mapStateToProps = (state, ownProps) => {
   const { id } = ownProps.match.params;

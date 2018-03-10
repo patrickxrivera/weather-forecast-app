@@ -5,7 +5,7 @@ import {
   receiveCity,
   fetchDashboardWeather,
   getDashboard
-} from '../redux/modules/dashboard';
+} from '../redux/dashboard/dashboard.js';
 import DashboardWrapper from '../components/Dashboard/DashboardWrapper/DashboardWrapper.jsx';
 
 const mapStateToProps = (state) => ({

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchForecast } from '../../redux/modules/currentLocation';
-
 const ForecastEnhancer = (ComponentToWrap) => {
   class WrappedComponent extends Component {
     componentDidMount() {

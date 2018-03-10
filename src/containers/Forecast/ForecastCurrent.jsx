@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import ForecastEnhancer from './ForecastEnhancer';
 import ForecastWrapper from '../../components/Forecast/ForecastWrapper/ForecastWrapper.jsx';
-import { fetchForecast } from '../../redux/modules/currentLocation';
+import { fetchForecast } from '../../redux/currentLocation/currentLocation.js';
 
 const mapStateToProps = (state, ownProps) => {
   return {

@@ -25,15 +25,13 @@ export const saveState = (state, key) => {
 
 /* Reset localStorage every 3 hours so weather is updated */
 
-let id;
-
-const test = () => {
+const createTimer = () => {
   const threeHours = 10800;
   const oneSecond = 1000;
   const refreshTime = oneSecond * threeHours; // === three hours in seconds
-  id = setInterval(otherTest, refreshTime);
+  setInterval(resetTimer, refreshTime);
 };
 
-const otherTest = () => localStorage.clear();
+const resetTimer = () => localStorage.clear();
 
-test();
+createTimer();

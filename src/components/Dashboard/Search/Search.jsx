@@ -12,7 +12,7 @@ class Search extends Component {
     View: string.isRequired,
     primaryColor: string.isRequired,
     secondaryColor: string.isRequired,
-    fetchPinWeather: func.isRequired,
+    fetchDashboardWeather: func.isRequired,
     fetchView: func.isRequired,
     receiveCity: func.isRequired
   };

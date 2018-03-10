@@ -1,3 +1,5 @@
+import { round, getDateFrom } from '../helpers/helpers.js';
+
 export const normalizeViewData = (state, action) => {
   const { id, newView } = action.payload;
   const cardToChange = state[id];
