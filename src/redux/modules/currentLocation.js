@@ -1,14 +1,14 @@
 import axios from 'axios';
 import { handleActions } from 'redux-actions';
-import moment from 'moment-timezone';
 
-const API_KEY = '5367d13ed05e34e3342d4fdbc4f5cb7e';
-const ROOT_URL = `http://api.openweathermap.org/data/2.5/`;
+import { API_KEY, ROOT_URL, round, getDateFrom } from '../../utils/api.js';
+
 const FETCH_WEATHER = 'FETCH_WEATHER';
 const FETCH_FORECAST = 'FETCH_FORECAST';
 
 export const fetchWeather = ({ latitude, longitude }) => {
   const url = `${ROOT_URL}weather?units=imperial&appid=${API_KEY}&lat=${latitude}&lon=${longitude}`;
+  console.log(url);
   const request = axios.get(url);
 
   return {
@@ -99,14 +99,5 @@ const getForecast = (day) => {
 
   return newForecast;
 };
-
-const getDateFrom = (timestamp) => {
-  return moment
-    .unix(timestamp)
-    .format('ddd')
-    .toUpperCase();
-};
-
-const round = (num) => Math.round(num);
 
 export const getCurrentLocation = (state) => state.root.currentLocation;

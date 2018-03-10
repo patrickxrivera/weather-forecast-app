@@ -1,39 +1,48 @@
-import React from 'react';
+import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
+import isEmpty from 'lodash/isEmpty';
 
-import {
-  Wrapper,
-  HeaderWrapper,
-  Header,
-  Middle,
-  Gutter,
-  StyledSun,
-  CurrentTemp,
-  Bottom
-} from './ResultStyles.jsx';
+import * as S from './ResultStyles.jsx'; // S === Styles => didn't want massive import :/
 
 const style = {
   marginBottom: 8,
   border: 'none'
 };
 
-const Result = ({ primaryColor, secondaryColor, city }) => (
-  <Wrapper>
-    <HeaderWrapper>
-      <Header primaryColor={primaryColor}>{city}</Header>
-    </HeaderWrapper>
-    <Middle>
-      <StyledSun size={80} />
-      <Gutter />
-      <CurrentTemp>72&deg;</CurrentTemp>
-    </Middle>
-    <Bottom>High: 80&deg; | Low: 62&deg;</Bottom>
-    <RaisedButton
-      label="View Forecast"
-      backgroundColor={secondaryColor}
-      style={style}
-    />
-  </Wrapper>
-);
+class Result extends Component {
+  componentDidMount() {
+    const { city, fetchPinWeather, id } = this.props;
+    fetchPinWeather(city, id);
+  }
+
+  render() {
+    const { primaryColor, secondaryColor, city, weather } = this.props;
+
+    if (isEmpty(weather)) return <S.Wrapper>Loading</S.Wrapper>;
+
+    const { description, average, high, low } = this.props.weather;
+
+    return (
+      <S.Wrapper>
+        <S.HeaderWrapper>
+          <S.Header primaryColor={primaryColor}>{city}</S.Header>
+        </S.HeaderWrapper>
+        <S.Middle>
+          <S.StyledSun size={80} />
+          <S.Gutter />
+          <S.CurrentTemp>{average}&deg;</S.CurrentTemp>
+        </S.Middle>
+        <S.Bottom>
+          High: {high}&deg; | Low: {low}&deg;
+        </S.Bottom>
+        <RaisedButton
+          label="View Forecast"
+          backgroundColor={secondaryColor}
+          style={style}
+        />
+      </S.Wrapper>
+    );
+  }
+}
 
 export default Result;

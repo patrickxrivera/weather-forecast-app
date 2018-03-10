@@ -16,9 +16,9 @@ class Search extends Component {
 
   handleSubmit = (payload, e) => {
     const { searchVal } = this.state;
-    const { fetchView, receiveSearch } = this.props;
+    const { fetchView, receiveCity } = this.props;
 
-    receiveSearch({ ...payload, searchVal }); // add searchVal to payload
+    receiveCity({ ...payload, searchVal }); // add searchVal to payload
     fetchView(payload);
   };
 
