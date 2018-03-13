@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
 import { func, string, number } from 'prop-types';
 
-import { inputStyle, hintStyle, style } from './SearchStyles';
+import { inputStyle, hintStyle, style, errorStyle } from './SearchStyles';
 import { Wrapper } from './SearchStyles';
 import TextField from 'material-ui/TextField';
+import { suggest } from './helpers/helpers.js';
 
-class Search extends Component {
+export default class Search extends Component {
   static propTypes = {
     id: number.isRequired,
     View: string.isRequired,
@@ -18,36 +18,33 @@ class Search extends Component {
   };
 
   state = {
-    searchVal: ''
+    searchVal: '',
+    errorText: ''
   };
 
   handleChange = ({ target: { value } }) => {
+    try {
+      const suggestions = suggest(value);
+      console.log(suggestions);
+      this.setState({ errorText: '' });
+    } catch (err) {
+      const errorText = 'Please enter a valid city';
+      this.setState({ errorText });
+    }
+
     this.setState({ searchVal: value });
   };
 
   handleSubmit = (payload, e) => {
     const { searchVal } = this.state;
+    const newPayload = { ...payload, searchVal };
     const { fetchView, receiveCity } = this.props;
 
-    receiveCity({ ...payload, searchVal }); // add searchVal to reducer payload
+    receiveCity(newPayload); // add searchVal to reducer payload
     fetchView(payload);
   };
 
-  renderTextField = ({ meta, color, input }) => {
-    return (
-      <TextField
-        // {...input}
-        // errorText={meta.error}
-        autoFocus={true}
-        hintText="Enter a city"
-        onChange={this.handleChange}
-        inputStyle={inputStyle}
-        hintStyle={hintStyle}
-        style={style}
-        underlineFocusStyle={{ borderColor: color }}
-      />
-    );
-  };
+  isError = () => this.state.errorText !== '';
 
   render() {
     const { primaryColor, id } = this.props;
@@ -56,29 +53,26 @@ class Search extends Component {
 
     return (
       <Wrapper>
-        <form onSubmit={() => this.handleSubmit(payload)}>
-          <Field
-            name="search"
-            color={primaryColor}
-            component={this.renderTextField}
+        <form
+          onSubmit={(e) =>
+            this.state.errorText
+              ? e.preventDefault()
+              : this.handleSubmit(payload)
+          }
+        >
+          <TextField
+            onChange={this.handleChange}
+            errorText={this.state.errorText}
+            hintText="Enter a city"
+            inputStyle={inputStyle}
+            hintStyle={hintStyle}
+            errorStyle={errorStyle}
+            style={style}
+            underlineFocusStyle={{ borderColor: primaryColor }}
+            autoFocus={true}
           />
         </form>
       </Wrapper>
     );
   }
 }
-
-const validate = (values) => {
-  const { search } = values;
-  const errors = {};
-  errors.search = getSearchError(search);
-  return errors;
-};
-
-const getSearchError = (search) =>
-  !search ? 'Please enter a city' : undefined;
-
-export default reduxForm({
-  form: 'SearchForm',
-  validate
-})(Search);

@@ -20,3 +20,7 @@ export const style = {
   fontWeight: 'normal',
   fontSize: '20px'
 };
+
+export const errorStyle = {
+  float: 'left'
+};
