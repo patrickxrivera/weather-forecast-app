@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 
+import { fadeIn } from '../../../utils/animations.js';
+
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   height: 100%;
+  opacity: 0;
+  animation: 800ms ${fadeIn} 100ms forwards;
 `;
 
 export const HeaderWrapper = styled.div`
@@ -58,3 +62,7 @@ export const BtnWrapper = styled.div`
   margin-bottom: 1rem;
   align-items: center;
 `;
+
+export const contentStyle = {
+  fill: 'hsla(222, 7%, 35%, .9)'
+};

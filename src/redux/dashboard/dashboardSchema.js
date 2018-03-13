@@ -5,6 +5,8 @@ export const normalizeViewData = (state, action) => {
   const { id, nextView } = action.payload;
   const cardToChange = state[id];
 
+  isResetWeatherData(nextView) ? delete cardToChange.weather : '';
+
   const updatedCard = {
     ...cardToChange,
     View: nextView
@@ -15,6 +17,8 @@ export const normalizeViewData = (state, action) => {
     [id]: updatedCard
   };
 };
+
+const isResetWeatherData = (nextView) => nextView === 'Pin';
 
 export const normalizeCityData = (state, action) => {
   const { id, searchVal } = action.payload;

@@ -10,10 +10,6 @@ import ContentForward from 'material-ui/svg-icons/content/forward';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import Loading from '../Loading/Loading';
 
-const style = {
-  fill: 'hsla(222, 7%, 35%, .9)'
-};
-
 class Result extends Component {
   static propTypes = {
     id: number.isRequired,
@@ -68,7 +64,7 @@ class Result extends Component {
             backgroundColor={secondaryColor}
             mini={true}
           >
-            <ContentClear style={style} color="black" />
+            <ContentClear style={S.contentStyle} color="black" />
           </FloatingActionButton>
           <Link
             to={{
@@ -76,7 +72,7 @@ class Result extends Component {
             }}
           >
             <FloatingActionButton backgroundColor={secondaryColor} mini={true}>
-              <ContentForward style={style} color="black" />
+              <ContentForward style={S.contentStyle} color="black" />
             </FloatingActionButton>
           </Link>
         </S.BtnWrapper>
