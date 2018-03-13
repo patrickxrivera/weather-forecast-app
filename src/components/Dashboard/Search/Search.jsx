@@ -24,36 +24,44 @@ export default class Search extends Component {
   };
 
   handleChange = (value) => {
-    // try {
-    //   const suggestions = suggest(value);
-    //   this.setState({ errorText: '' });
-    // } catch (err) {
-    //   const errorText = 'Please enter a valid city';
-    //   this.setState({ errorText });
-    // }
     this.setState({ searchVal: value }, () => {
-      const { getSuggestions } = this.props;
-      getSuggestions(this.state.searchVal);
+      try {
+        this.isValidSearch();
+      } catch (err) {
+        this.setErrorText();
+      }
     });
   };
 
-  handleSubmit = (payload, e) => {
+  isValidSearch = () => {
+    const { fetchSuggestions } = this.props;
     const { searchVal } = this.state;
-    const newPayload = { ...payload, searchVal };
+
+    fetchSuggestions(searchVal);
+    this.setState({ errorText: '' });
+  };
+
+  setErrorText = () => {
+    const errorText = 'Please enter a valid city';
+    this.setState({ errorText });
+  };
+
+  handleSubmit = (payload) => {
+    const { searchVal } = this.state;
     const { fetchView, receiveCity } = this.props;
 
-    receiveCity(newPayload);
+    receiveCity({ ...payload, searchVal }); // add searchVal to payload
     fetchView(payload);
   };
 
   render() {
-    const { primaryColor, id } = this.props;
-    const newView = 'Result';
-    const payload = { id, newView };
+    const { primaryColor, id, suggestions } = this.props;
+    const nextView = 'Result';
+    const payload = { id, nextView };
 
     return (
       <Wrapper>
-        <form
+        <form // could only get preventDefault to work using this format :(
           onSubmit={(e) =>
             this.state.errorText
               ? e.preventDefault()
@@ -63,6 +71,7 @@ export default class Search extends Component {
           <AutoComplete
             dataSource={this.props.suggestions}
             onUpdateInput={this.handleChange}
+            onNewRequest={() => this.handleSubmit(payload)}
             errorText={this.state.errorText}
             hintText="Enter a city"
             inputStyle={inputStyle}
@@ -71,6 +80,7 @@ export default class Search extends Component {
             style={style}
             underlineFocusStyle={{ borderColor: primaryColor }}
             autoFocus={true}
+            fullWidth={true}
           />
         </form>
       </Wrapper>

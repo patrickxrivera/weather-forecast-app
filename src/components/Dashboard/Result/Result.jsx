@@ -40,8 +40,8 @@ class Result extends Component {
       id
     } = this.props;
 
-    const newView = 'Pin';
-    const payload = { id, newView };
+    const nextView = 'Pin';
+    const payload = { id, nextView };
 
     if (isEmpty(weather)) return <Loading primaryColor={primaryColor} />;
 

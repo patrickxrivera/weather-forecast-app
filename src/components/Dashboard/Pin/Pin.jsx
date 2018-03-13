@@ -6,8 +6,8 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 const Pin = ({ id, primaryColor, secondaryColor, fetchView }) => {
-  const newView = 'Search';
-  const payload = { id, newView };
+  const nextView = 'Search';
+  const payload = { id, nextView };
 
   return (
     <OuterWrapper secondaryColor={secondaryColor}>
