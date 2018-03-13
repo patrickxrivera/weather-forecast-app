@@ -1,5 +1,5 @@
 import { getDaysFrom, getForecast } from '../helpers/helpers.js';
-import { round, getDateFrom } from '../helpers/helpers.js';
+import { round } from '../helpers/helpers.js';
 
 export const normalizeWeatherData = ({ payload }) => {
   const { data } = payload;

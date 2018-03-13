@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import isEmpty from 'lodash/isEmpty';
 import { func, shape, string, number } from 'prop-types';
 
 import { Wrapper, style } from './CurrentLocationStyles';

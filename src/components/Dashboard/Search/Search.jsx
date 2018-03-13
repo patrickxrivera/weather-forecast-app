@@ -67,7 +67,7 @@ export default class Search extends Component {
           }
         >
           <AutoComplete
-            dataSource={this.props.suggestions}
+            dataSource={suggestions}
             onUpdateInput={this.handleChange}
             onNewRequest={(searched, idx) =>
               // if is valid search, handleSubmit

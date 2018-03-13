@@ -1,11 +1,10 @@
 import { getDaysFrom, getForecast } from '../helpers/helpers.js';
-import { round, getDateFrom } from '../helpers/helpers.js';
+import { round } from '../helpers/helpers.js';
 
 export const normalizeViewData = (state, action) => {
   const { id, nextView } = action.payload;
   const cardToChange = state[id];
-
-  isResetWeatherData(nextView) ? delete cardToChange.weather : '';
+  resetWeatherData(nextView, cardToChange);
 
   const updatedCard = {
     ...cardToChange,
@@ -18,7 +17,8 @@ export const normalizeViewData = (state, action) => {
   };
 };
 
-const isResetWeatherData = (nextView) => nextView === 'Pin';
+const resetWeatherData = (nextView, cardToChange) =>
+  nextView === 'Pin' ? delete cardToChange.weather : '';
 
 export const normalizeCityData = (state, action) => {
   const { id, searchVal } = action.payload;

@@ -7,6 +7,7 @@ import { componentMap } from './DashboardWrapperData';
 
 const DashboardWrapper = (props) => {
   const { dashboard, ...rest } = props;
+
   return (
     <OuterWrapper>
       {values(dashboard).map((data) => {
@@ -15,8 +16,8 @@ const DashboardWrapper = (props) => {
         const nextProps = { ...data, ...rest };
 
         return (
-          <CardWrapper>
-            <Component key={id} {...nextProps} />
+          <CardWrapper key={id}>
+            <Component {...nextProps} />
           </CardWrapper>
         );
       })}
@@ -25,7 +26,6 @@ const DashboardWrapper = (props) => {
 };
 
 DashboardWrapper.propTypes = {
-  fetchPinWeather: func.isRequired,
   fetchView: func.isRequired,
   receiveCity: func.isRequired,
   dashboard: shape({
