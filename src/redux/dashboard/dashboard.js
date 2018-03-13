@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { createAction, handleActions } from 'redux-actions';
 
-import * as color from 'material-ui/styles/colors';
 import { API_KEY, ROOT_URL, round, getDateFrom } from '../helpers/helpers.js';
+import * as color from 'material-ui/styles/colors';
 import * as schema from './dashboardSchema.js';
 
 const FETCH_DASHBOARD_WEATHER = 'FETCH_DASHBOARD_WEATHER';

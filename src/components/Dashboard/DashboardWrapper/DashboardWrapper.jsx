@@ -7,7 +7,6 @@ import { componentMap } from './DashboardWrapperData';
 
 const DashboardWrapper = (props) => {
   const { dashboard, ...rest } = props;
-
   return (
     <OuterWrapper>
       {values(dashboard).map((data) => {
