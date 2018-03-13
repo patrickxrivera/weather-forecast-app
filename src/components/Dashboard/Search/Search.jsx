@@ -3,9 +3,7 @@ import { func, string, number } from 'prop-types';
 
 import { inputStyle, hintStyle, style, errorStyle } from './SearchStyles';
 import { Wrapper } from './SearchStyles';
-import TextField from 'material-ui/TextField';
 import AutoComplete from 'material-ui/AutoComplete';
-import { suggest } from './helpers/helpers.js';
 
 export default class Search extends Component {
   static propTypes = {
@@ -71,7 +69,10 @@ export default class Search extends Component {
           <AutoComplete
             dataSource={this.props.suggestions}
             onUpdateInput={this.handleChange}
-            onNewRequest={() => this.handleSubmit(payload)}
+            onNewRequest={(searched, idx) =>
+              // if is valid search, handleSubmit
+              idx >= 0 ? this.handleSubmit(payload) : ''
+            }
             errorText={this.state.errorText}
             hintText="Enter a city"
             inputStyle={inputStyle}

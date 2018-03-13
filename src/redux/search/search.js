@@ -9,7 +9,6 @@ const initialState = { suggestions: [] };
 export default handleActions(
   {
     FETCH_SUGGESTIONS: (state, action) => {
-      console.log(action.payload);
       const suggestions = suggest(action.payload);
       return {
         ...state,
