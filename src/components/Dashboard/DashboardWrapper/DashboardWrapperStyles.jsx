@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 
+import { fadeInUp } from '../../../utils/animations.js';
+
 export const OuterWrapper = styled.div`
   width: 100%;
   height: 470px;
   display: flex;
   align-items: center;
+  opacity: 0;
+  animation: 1200ms ${fadeInUp} 500ms forwards;
 `;
 
 export const CardWrapper = styled.div`

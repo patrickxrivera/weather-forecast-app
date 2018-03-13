@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+import { fadeInUp } from '../../../utils/animations.js';
+
+export const OuterWrapper = styled.div`
+  opacity: 0;
+  animation: 1000ms ${fadeInUp} forwards;
+`;
+
 export const Wrapper = styled.div`
   margin-top: 2rem;
   width: 100%;

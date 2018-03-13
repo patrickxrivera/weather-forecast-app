@@ -1,10 +1,15 @@
 import React from 'react';
 
-import { Wrapper, TitleWrapper, Title } from './ForecastWrapperStyles.jsx';
+import {
+  OuterWrapper,
+  Wrapper,
+  TitleWrapper,
+  Title
+} from './ForecastWrapperStyles.jsx';
 import ForecastItem from '../ForecastItem/ForecastItem.jsx';
 
 const ForecastWrapper = ({ forecast, name, primaryColor, secondaryColor }) => (
-  <div>
+  <OuterWrapper>
     <TitleWrapper>
       <Title color={primaryColor}> {name}</Title>
     </TitleWrapper>
@@ -18,7 +23,7 @@ const ForecastWrapper = ({ forecast, name, primaryColor, secondaryColor }) => (
         />
       ))};
     </Wrapper>
-  </div>
+  </OuterWrapper>
 );
 
 export default ForecastWrapper;
