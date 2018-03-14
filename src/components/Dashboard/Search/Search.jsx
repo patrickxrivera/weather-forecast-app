@@ -54,6 +54,7 @@ export default class Search extends Component {
 
   render() {
     const { primaryColor, id, suggestions } = this.props;
+    console.log(suggestions);
     const nextView = 'Result';
     const payload = { id, nextView };
 

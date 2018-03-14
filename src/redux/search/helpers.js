@@ -18,8 +18,8 @@ window.trie = trie;
 
 export const filterSuggestions = (input) => {
   const formattedInput = format(input);
+  console.log(formattedInput);
   const suggestions = suggest(formattedInput);
-  console.log({ formattedInput, suggestions });
   return suggestions;
 };
 
@@ -29,7 +29,8 @@ const format = (input) => {
   return formattedInput;
 };
 
-const toTitleCase = (word) => word[0].toUpperCase() + word.slice(1);
+const toTitleCase = (word) =>
+  word === '' ? '' : word[0].toUpperCase() + word.slice(1);
 
 const suggest = (input) => {
   const suggestions = trie.suggest(input);
