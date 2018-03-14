@@ -27,7 +27,6 @@ export default class Search extends Component {
         this.isValidSearch();
       } catch (err) {
         const { resetSuggestions } = this.props;
-
         resetSuggestions();
         this.setErrorText();
       }
@@ -37,7 +36,6 @@ export default class Search extends Component {
   isValidSearch = () => {
     const { fetchSuggestions } = this.props;
     const { searchVal } = this.state;
-
     fetchSuggestions(searchVal);
     this.setState({ errorText: '' });
   };
@@ -50,7 +48,6 @@ export default class Search extends Component {
   handleSubmit = (payload) => {
     const { searchVal } = this.state;
     const { fetchView, receiveCity } = this.props;
-
     receiveCity({ ...payload, searchVal }); // add searchVal to payload
     fetchView(payload);
   };
@@ -76,7 +73,7 @@ export default class Search extends Component {
               // if is valid search, handleSubmit
               idx >= 0 ? this.handleSubmit(payload) : ''
             }
-            filter={(searchText: string, key: string) => true}
+            filter={(searchText, key) => true} // show all suggestions b/c filtering is done already
             errorText={this.state.errorText}
             hintText="Enter a city"
             inputStyle={inputStyle}
