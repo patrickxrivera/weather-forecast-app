@@ -1,15 +1,24 @@
 import { createAction, handleActions } from 'redux-actions';
 
-import { suggest } from './helpers.js';
+import { filterSuggestions } from './helpers.js';
 
 export const fetchSuggestions = createAction('FETCH_SUGGESTIONS');
+export const resetSuggestions = createAction('RESET_SUGGESTIONS');
 
 const initialState = { suggestions: [] };
 
 export default handleActions(
   {
     FETCH_SUGGESTIONS: (state, action) => {
-      const suggestions = suggest(action.payload);
+      const suggestions = filterSuggestions(action.payload);
+      return {
+        ...state,
+        suggestions
+      };
+    },
+
+    RESET_SUGGESTIONS: (state, action) => {
+      const suggestions = [];
       return {
         ...state,
         suggestions

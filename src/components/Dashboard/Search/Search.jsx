@@ -26,6 +26,9 @@ export default class Search extends Component {
       try {
         this.isValidSearch();
       } catch (err) {
+        const { resetSuggestions } = this.props;
+
+        resetSuggestions();
         this.setErrorText();
       }
     });
@@ -73,6 +76,7 @@ export default class Search extends Component {
               // if is valid search, handleSubmit
               idx >= 0 ? this.handleSubmit(payload) : ''
             }
+            filter={(searchText: string, key: string) => true}
             errorText={this.state.errorText}
             hintText="Enter a city"
             inputStyle={inputStyle}

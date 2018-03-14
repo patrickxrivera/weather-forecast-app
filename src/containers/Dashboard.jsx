@@ -6,7 +6,11 @@ import {
   fetchDashboardWeather,
   getDashboard
 } from '../redux/dashboard/dashboard.js';
-import { fetchSuggestions, getSuggestions } from '../redux/search/search.js';
+import {
+  fetchSuggestions,
+  getSuggestions,
+  resetSuggestions
+} from '../redux/search/search.js';
 import DashboardWrapper from '../components/Dashboard/DashboardWrapper/DashboardWrapper.jsx';
 
 const mapStateToProps = (state) => ({
@@ -18,5 +22,6 @@ export default connect(mapStateToProps, {
   fetchView,
   receiveCity,
   fetchDashboardWeather,
-  fetchSuggestions
+  fetchSuggestions,
+  resetSuggestions
 })(DashboardWrapper);

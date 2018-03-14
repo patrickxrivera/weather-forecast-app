@@ -16,8 +16,23 @@ const trie = new Trie();
 
 window.trie = trie;
 
-export const suggest = (input) => {
+export const filterSuggestions = (input) => {
+  const formattedInput = format(input);
+  const suggestions = suggest(formattedInput);
+  console.log({ formattedInput, suggestions });
+  return suggestions;
+};
+
+const format = (input) => {
+  const arr = input.split(' ');
+  const formattedInput = arr.map(toTitleCase).join(' ');
+  return formattedInput;
+};
+
+const toTitleCase = (word) => word[0].toUpperCase() + word.slice(1);
+
+const suggest = (input) => {
   const suggestions = trie.suggest(input);
-  // trie.select(input); // move to top of search results
+  trie.select(input); // move to top of search results
   return suggestions.slice(0, 5);
 };
